@@ -1,0 +1,37 @@
+.top-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #222;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.top-menu button {
+    background-color: #444;
+    border-radius: 4px;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+}
+
+.top-menu button:first-child {
+    background-image: linear-gradient(to right, red, orange);
+}
+
+.top-menu button:nth-child(2) {
+    background-image: linear-gradient(to right, yellow, green);
+}
+
+.top-menu button:last-child {
+    background-image: linear-gradient(to right, blue, purple);
+}
+
+.top-menu button:hover {
+    background-color: transparent;
+    transform: scale(1.05);
+}
