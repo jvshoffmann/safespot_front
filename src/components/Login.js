@@ -3,6 +3,8 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './Login.css';
 import { AuthContext } from './AuthContext'; // Supondo que você colocou o AuthContext neste diretório
+//const apiUrl = 'http://localhost:3000'
+const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com/'
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -25,7 +27,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/api/login', {
+      const response = await fetch(`${apiUrl}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

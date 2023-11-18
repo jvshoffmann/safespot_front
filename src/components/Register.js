@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-
-
+//const apiUrl = 'http://localhost:3000'
+const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com/'
 function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -12,7 +12,7 @@ function Register() {
     e.preventDefault();
     
     // Aqui você fará a chamada para o back-end para registrar o usuário
-    const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/api/register', {
+    const response = await fetch(`${apiUrl}/api/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import './EstablishmentDetails.css'
 import 'font-awesome/css/font-awesome.min.css';
 
-
+//const apiUrl = 'http://localhost:3000'
+const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com/'
 
 function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
     const [reviews, setReviews] = useState([]);
@@ -15,7 +16,8 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
         //console.log(place);
         const ensureEstablishmentExists = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/ensure-establishment`, {
+                console.log(apiUrl)
+                const response = await fetch(`${apiUrl}/api/ensure-establishment`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -27,7 +29,8 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
                         address: place.formatted_address
                     })
                 });
-    
+                const text = await response.text();
+               // console.log("Raw response:", text)
                 const data = await response.json();
     
                 if (!data.success) {
@@ -43,8 +46,10 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
     
         const fetchReviews = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/reviews/${place.place_id}`);
+                console.log('API Base URL:', apiUrl);
+                const response = await fetch(`${apiUrl}/api/reviews/${place.place_id}`);
                 const data = await response.json();
+                
                 
                 if (data.success) {
                     setReviews(data.reviews);
@@ -72,7 +77,7 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
         if (rating > 0 && comment.trim()) {
             try {
                 // Primeiro, obtenha o id do estabelecimento usando o maps_id
-                const idResponse = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/establishment-id/${place.place_id}`);
+                const idResponse = await fetch(`${apiUrl}/api/establishment-id/${place.place_id}`);
             
                 const idData = await idResponse.json();
                // console.log(idResponse)
@@ -86,7 +91,7 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
                 
                 
                 // Agora, envie a avaliação
-                const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/api/reviews', {
+                const response = await fetch(`${apiUrl}/api/reviews`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
