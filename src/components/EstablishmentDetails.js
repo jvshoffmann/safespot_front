@@ -29,7 +29,7 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
                         address: place.formatted_address
                     })
                 });
-                const text = await response.text();
+                //const text = await response.text();
                // console.log("Raw response:", text)
                 const data = await response.json();
     
