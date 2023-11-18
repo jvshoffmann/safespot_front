@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 //const apiUrl = 'http://localhost:3000'
-const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com/'
+const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com'
+
 function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');

@@ -4,7 +4,7 @@ import './EstablishmentDetails.css'
 import 'font-awesome/css/font-awesome.min.css';
 
 //const apiUrl = 'http://localhost:3000'
-const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com/'
+const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com'
 
 function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
     const [reviews, setReviews] = useState([]);
