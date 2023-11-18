@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import React from "react"
 import Login from './components/Login.js';
 import MapContainer from './components/Map.js';
@@ -15,6 +15,7 @@ class App extends React.Component {
       <AuthProvider>
         <Router>
           <Routes>
+          <Route path="/" element={<Navigate replace to="/map" />} />
             <Route path="/map" element={<MapContainer />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
