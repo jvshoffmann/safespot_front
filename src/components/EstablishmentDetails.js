@@ -135,7 +135,7 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose
         const avgRating = totalReviews ? totalRating / totalReviews : 0;
         setAverageRating(avgRating.toFixed(1));
     }, [reviews]);
-
+    const isLoggedIn = localStorage.getItem('authToken') ? true : false;
     return (
         <div className="establishment-details">
             <button onClick={onClose} className="close-button">Fechar</button>
@@ -158,10 +158,14 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose
                     onChange={(e) => setComment(e.target.value)}
                     placeholder="Adicione seu comentário aqui..."
                 />
-                <button onClick={handleSubmit}>Enviar Avaliação</button>
+                {isLoggedIn ? (
+                    <button onClick={handleSubmit}>Enviar Avaliação</button>
+                ) : (
+                    <p>Gostaria de avaliar? Por favor, faça login ou crie uma conta para contribuir com sua opinião.</p>
+                )}
             </div>
 
-            <div>
+            <div className = "reviews-container" >
                 <h3>Avaliações</h3>
                 {reviews.map(review => (
                     <div key={review.id}>

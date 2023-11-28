@@ -185,3 +185,16 @@ button:focus, button:active {
     box-shadow: 0 0 10px red, 0 0 20px orange, 0 0 30px yellow, 0 0 40px green, 0 0 50px blue, 0 0 60px purple;
     outline: none;
 }
+
+.establishment-details .reviews-container {
+    max-height: 300px; /* Ajuste este valor conforme necessário */
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+/* Estilos para melhorar a visibilidade em dispositivos móveis */
+@media (max-width: 768px) {
+    .establishment-details .reviews-container {
+        max-height: 200px;
+    }
+}
