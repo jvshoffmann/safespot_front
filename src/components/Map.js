@@ -23,6 +23,11 @@ class MapContainer extends Component {
     this.loadGoogleMapScript();
   }
 
+  closeDetails = () => {
+    this.setState({ selectedPlaceDetails: null });
+  };
+
+
   loadGoogleMapScript() {
     if (!window.google) {
       const script = document.createElement('script');
@@ -52,6 +57,7 @@ searchPlaces = () => {
 
     if (query) {
         this.autocompleteService.getPlacePredictions({ input: query }, this.displayResults);
+        document.getElementById('autocomplete-results').style.display = 'block';
     }
 };
 
@@ -151,6 +157,7 @@ handleRatingSelected(rating) {
                 place={this.state.selectedPlaceDetails}
                 currentRating={this.state.currentRating}
                 onRatingSelected={(rating) => this.handleRatingSelected(rating)}
+                onClose={this.closeDetails}
             />
 
 

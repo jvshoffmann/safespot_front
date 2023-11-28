@@ -6,7 +6,7 @@ import 'font-awesome/css/font-awesome.min.css';
 //const apiUrl = 'http://localhost:3000'
 const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com'
 
-function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
+function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose  }) {
     const [reviews, setReviews] = useState([]);
     const [rating, setRating] = useState(currentRating || 0);
     const [comment, setComment] = useState('');
@@ -138,6 +138,7 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected  }) {
 
     return (
         <div className="establishment-details">
+            <button onClick={onClose} className="close-button">Fechar</button>
             <h2>{place.name}</h2>
             <p>{place.formatted_address}</p>
             <h4>Avaliação média: {averageRating} 🌟</h4>
