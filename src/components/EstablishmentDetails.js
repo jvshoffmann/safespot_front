@@ -165,11 +165,11 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose
                 )}
             </div>
 
-            <div className = "reviews-container" >
+            <div className="reviews-container">
                 <h3>Avaliações</h3>
                 {reviews.map(review => (
-                    <div key={review.id}>
-                        <strong>{review.rating} 🌟</strong>
+                    <div key={review.id} className="review-item">
+                        <strong>{review.rating} 🌟 - {review.username}</strong>
                         <p>{review.comment}</p>
                     </div>
                 ))}
