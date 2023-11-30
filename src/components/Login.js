@@ -40,6 +40,7 @@ function Login() {
       if (data.success) {
         // Salva o token no localStorage e no contexto
         localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userId', data.userId);
         setAuthData(data.token);
 
         // Redireciona o usuário para a tela principal (por exemplo, mapa)

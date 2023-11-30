@@ -11,6 +11,11 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose
     const [rating, setRating] = useState(currentRating || 0);
     const [comment, setComment] = useState('');
     const [averageRating, setAverageRating] = useState(0);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [editReviewId, setEditReviewId] = useState(null);
+    const [editRating, setEditRating] = useState(0);
+    const [editComment, setEditComment] = useState('');
+    const userId = parseInt(localStorage.getItem('userId'));
 
     useEffect(() => {
         //console.log(place);
@@ -126,7 +131,70 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose
             alert("Por favor, escolha uma classificação e adicione um comentário.");
         }
     };
+
+    const handleEditSubmit = async () => {
+        if (editRating > 0 && editComment.trim()) {
+            const response = await fetch(`${apiUrl}/api/review/${editReviewId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': localStorage.getItem('authToken')
+                },
+                body: JSON.stringify({
+                    rating: editRating,
+                    comment: editComment
+                })
+            });
     
+            const data = await response.json();
+            if (data.success) {
+                // Atualize a lista de avaliações
+                const updatedReviews = reviews.map(review => {
+                    if (review.id === editReviewId) {
+                        return { ...review, rating: editRating, comment: editComment };
+                    }
+                    return review;
+                });
+                setReviews(updatedReviews);
+                setIsEditModalOpen(false);
+            } else {
+                alert(data.message);
+            }
+        } else {
+            alert("Por favor, escolha uma classificação e adicione um comentário.");
+        }
+    };
+    
+
+    const editReview = (reviewId) => {
+        const reviewToEdit = reviews.find(review => review.id === reviewId);
+        if (reviewToEdit) {
+            setEditReviewId(reviewId);
+            setEditRating(reviewToEdit.rating);
+            setEditComment(reviewToEdit.comment);
+            setIsEditModalOpen(true);
+        }
+    };
+    
+    
+    const deleteReview = async (reviewId) => {
+        if (window.confirm('Tem certeza que deseja excluir esta avaliação?')) {
+            const response = await fetch(`${apiUrl}/api/review/${reviewId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': localStorage.getItem('authToken')
+                }
+            });
+    
+            const data = await response.json();
+            if (data.success) {
+                // Remova a avaliação da lista de reviews
+                setReviews(reviews.filter(review => review.id !== reviewId));
+            } else {
+                alert(data.message);
+            }
+        }
+    };
 
     // Calcular a classificação média
     useEffect(() => {
@@ -164,13 +232,39 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose
                     <p>Gostaria de avaliar? Por favor, faça login ou crie uma conta para contribuir com sua opinião.</p>
                 )}
             </div>
-
+            {isEditModalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={() => setIsEditModalOpen(false)}>&times;</span>
+                        <h3>Editar Avaliação</h3>
+                        {[1, 2, 3, 4, 5].map(star => (
+                            <i
+                                key={star}
+                                className={`fa star ${editRating >= star ? 'fa-star' : 'fa-star-o'}`}
+                                onClick={() => setEditRating(star)}
+                            />
+                        ))}
+                        <textarea
+                            value={editComment}
+                            onChange={(e) => setEditComment(e.target.value)}
+                            placeholder="Edite seu comentário aqui..."
+                        />
+                        <button onClick={handleEditSubmit}>Atualizar Avaliação</button>
+                    </div>
+                </div>
+            )}           
             <div className="reviews-container">
                 <h3>Avaliações</h3>
                 {reviews.map(review => (
                     <div key={review.id} className="review-item">
                         <strong>{review.rating} 🌟 - {review.username}</strong>
                         <p>{review.comment}</p>
+                        {userId === review.user_id && (
+                            <div>
+                                <button onClick={() => editReview(review.id)}>Editar</button>
+                                <button onClick={() => deleteReview(review.id)}>Deletar</button>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
