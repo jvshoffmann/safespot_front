@@ -105,6 +105,7 @@ background: #fff;
 .result-item {
 padding: 10px;
 cursor: pointer;
+color: black; 
 }
 
 .result-item:hover {

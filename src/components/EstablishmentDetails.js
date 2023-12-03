@@ -206,12 +206,12 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose
     const isLoggedIn = localStorage.getItem('authToken') ? true : false;
     return (
         <div className="establishment-details">
-            <button onClick={onClose} className="close-button">Fechar</button>
+            <button onClick={onClose} className="close-button">×</button>
             <h2>{place.name}</h2>
             <p>{place.formatted_address}</p>
             <h4>Avaliação média: {averageRating} 🌟</h4>
 
-            <div>
+            <div className="add-review-container">
                 <h3>Adicionar Avaliação</h3>
                 {[1, 2, 3, 4, 5].map(star => (
                         <i
@@ -227,7 +227,8 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose
                     placeholder="Adicione seu comentário aqui..."
                 />
                 {isLoggedIn ? (
-                    <button onClick={handleSubmit}>Enviar Avaliação</button>
+                    <button className="send-review" onClick={handleSubmit}>Enviar Avaliação</button>
+
                 ) : (
                     <p>Gostaria de avaliar? Por favor, faça login ou crie uma conta para contribuir com sua opinião.</p>
                 )}
@@ -260,10 +261,14 @@ function EstablishmentDetails({  place, currentRating, onRatingSelected, onClose
                         <strong>{review.rating} 🌟 - {review.username}</strong>
                         <p>{review.comment}</p>
                         {userId === review.user_id && (
-                            <div>
-                                <button onClick={() => editReview(review.id)}>Editar</button>
-                                <button onClick={() => deleteReview(review.id)}>Deletar</button>
-                            </div>
+                            <div className="review-actions">
+                                <button className="icon-button" onClick={() => editReview(review.id)} title="Editar">
+                                    <i className="fa fa-pencil"></i>
+                                </button>
+                                <button className="icon-button" onClick={() => deleteReview(review.id)} title="Deletar">
+                                    <i className="fa fa-trash"></i>
+                                </button>
+                          </div>
                         )}
                     </div>
                 ))}
