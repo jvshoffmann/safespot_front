@@ -34,10 +34,12 @@ function Register() {
 
   return (
     <div className="register-container">
+      
       <form onSubmit={handleRegister}>
+      <h2 className = "login-text">Registre-se</h2>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="Nome de usuário"
           value={username}
           onChange={e => setUsername(e.target.value)}
         />

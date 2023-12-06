@@ -57,16 +57,17 @@ function Login() {
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit}>
-        <label>
-          E-mail ou Username:
+        <h2 className = "login-text">Login</h2>
+        <label className = "login-text">
+          E-mail:
           <input
             type="text"
-            placeholder="Digite seu e-mail ou username"
+            placeholder="Digite seu e-mail"
             value={email}
             onChange={handleEmailChange}
           />
         </label>
-        <label>
+        <label className = "login-text">
           Senha:
           <input
             type="password"
@@ -76,12 +77,12 @@ function Login() {
           />
         </label>
         <button type="submit">Entrar</button>
+        <button onClick={() => navigate('/register')}>Registrar-se</button>
+        
       </form>
-      <button onClick={() => navigate('/register')}>
-        Registrar-se
-      </button>
     </div>
   );
 }
+
 
 export default Login;
