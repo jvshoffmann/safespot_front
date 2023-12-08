@@ -4,6 +4,7 @@ import Login from './components/Login.js';
 import MapContainer from './components/Map.js';
 import Register from './components/Register.js';
 import { AuthProvider } from './components/AuthContext.js';
+import VerifyEmail from './components/VerifyEmail.js';
 
 class App extends React.Component {
   state = {
@@ -19,6 +20,7 @@ class App extends React.Component {
             <Route path="/map" element={<MapContainer />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/verify-email/:token" element={<VerifyEmail />} />
           </Routes>
         </Router>
       </AuthProvider>

@@ -2,8 +2,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './Login.css';
-import { AuthContext } from './AuthContext'; // Supondo que você colocou o AuthContext neste diretório
-//const apiUrl = 'http://localhost:3000'
+import { AuthContext } from './AuthContext'; 
 const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com'
 
 function Login() {
@@ -11,7 +10,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const { setAuthData } = useContext(AuthContext); // Para acessar a função setAuthData do nosso contexto
+  const { setAuthData } = useContext(AuthContext); 
 
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -43,7 +42,7 @@ function Login() {
         localStorage.setItem('userId', data.userId);
         setAuthData(data.token);
 
-        // Redireciona o usuário para a tela principal (por exemplo, mapa)
+        
         navigate('/map');
       } else {
         alert('Erro no login. Verifique seu e-mail/senha.');

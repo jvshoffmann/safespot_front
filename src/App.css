@@ -84,3 +84,8 @@
     transform: rotate(360deg);
   }
 }
+
+.register-message {
+  color: #333; /* Ou qualquer outra cor que seja visível no seu fundo */
+  margin-top: 10px;
+}

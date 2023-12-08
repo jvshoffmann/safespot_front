@@ -1,54 +1,4 @@
-/*html, body, #root {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; 
-  }
-  
 
-  .map-page-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
-.map-container {
-    flex-grow: 1;
-}
-.autocomplete-container {
-  position: relative;
-  width: 100%; 
-  z-index: 1000;
-}
-
-
-#place-search {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box; 
-}
-
-
-.autocomplete-results {
-  border: 1px solid #ccc;
-  max-height: 150px;
-  overflow-y: auto;
-  position: absolute; 
-  top: 100%;  
-  left: 0;  
-  width: 100%; 
-  background: #fff;
-}
-
-.result-item {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.result-item:hover {
-  background: #f5f5f5;
-}*/
 
 html, body, #root {
   height: 100%;
@@ -116,6 +66,10 @@ background: #FFC500;
 .autocomplete-container {
   padding: 5px;
 }
+}
+.register-message {
+  color: #333; /* Ou qualquer outra cor que seja visível no seu fundo */
+  margin-top: 10px;
 }
 
 
