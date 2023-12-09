@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const apiUrl = 'http://localhost:3000'
-//const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com'
+//const apiUrl = 'http://localhost:3000'
+const apiUrl = 'https://safespot-d17a40cab9a8.herokuapp.com'
 
 function VerifyEmail() {
   const [verificationStatus, setVerificationStatus] = useState('');
